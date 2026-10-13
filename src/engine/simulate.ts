@@ -436,6 +436,7 @@ export function resolveDay(input: GameState): GameState {
       if (p.devHoursDone >= p.devHoursTotal - 1e-9) {
         p.status = "live";
         p.launchedDay = s.day + 1;
+        if (p.type === "coaching" && s.plan.coachingSlots === 0) s.plan.coachingSlots = 1;
         if (p.type === "event") {
           p.capacity = eventCapacity(s);
           p.eventDay = s.day + 1 + EVENT_SALES_DAYS;
